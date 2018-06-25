@@ -1,0 +1,2 @@
+module ForestcastWeathersHelper
+end
