@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_25_170011) do
+ActiveRecord::Schema.define(version: 2018_06_28_083223) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "forecast_weathers", force: :cascade do |t|
-    t.string "citi_name"
-    t.integer "citi_id"
+  create_table "cities", force: :cascade do |t|
+    t.integer "city_id"
+    t.string "city_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

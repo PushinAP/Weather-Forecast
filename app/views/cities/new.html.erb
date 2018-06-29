@@ -1,0 +1,15 @@
+<h1>Add citi</h1>
+
+<%= form_with scope: :city, url: cities_path do |f| %> 
+	<p>
+		<%= f.label :city_name, 'Enter City Name' %>
+		<%= f.text_field :city_name %>
+	</p>
+
+	<p>
+		<%= f.label :city_id, 'Enter City ID' %>
+		<%= f.text_field :city_id %>
+	</p>
+
+	<%= f.submit 'Add City' %>
+<% end %>

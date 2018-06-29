@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   def new
   	if logged_in? 
-  		redirect_to forestcast_weathers_path
+  		redirect_to  cities_path
   	end
   end
 
@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
 
   	if user && user.authenticate(params[:session][:password])
   		log_in(user)
-  		redirect_to forestcast_weathers_path
+  		redirect_to cities_path
   	else
   		render 'new'
   	end

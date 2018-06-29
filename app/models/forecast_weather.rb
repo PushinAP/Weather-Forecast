@@ -1,2 +1,0 @@
-class ForecastWeather < ApplicationRecord
-end

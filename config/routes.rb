@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
+  get 'cities/new'
   root 'sessions#new'
  	post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#delete'
 
-  resources :forestcast_weathers
+  resources :cities
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

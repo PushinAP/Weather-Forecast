@@ -1,0 +1,10 @@
+<h1>List forecast weather in the citi</h1>
+
+<table>
+	<% @cities.each do |city|  %>
+		<tr>
+			<td>Weather in <%= city.city_name %></td>
+			<td><%= link_to 'Show', city_path(city) %></td>
+		</tr>
+	<% end %>
+</table>

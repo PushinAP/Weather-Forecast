@@ -1,0 +1,6 @@
+<p> <%= @weather['main']['temp'].round %> </p>
+
+<%= content_tag :div, id: 'map', data: 
+							{ lon: @weather['coord']['lon'], 
+										lat: @weather['coord']['lat'] } do %>
+<% end %>
