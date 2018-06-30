@@ -5,6 +5,11 @@
 		<tr>
 			<td>Weather in <%= city.city_name %></td>
 			<td><%= link_to 'Show', city_path(city) %></td>
+
+			<% if current_user.admin? %>
+				<td><%= link_to 'Delete', city_path(city) %></td>
+			<% end %>
+			
 		</tr>
 	<% end %>
 </table>

@@ -10,7 +10,13 @@ class SessionsController < ApplicationController
 
   	if user && user.authenticate(params[:session][:password])
   		log_in(user)
-  		redirect_to cities_path
+
+      if current_user.admin?
+        redirect_to cities_new_path
+      else
+        redirect_to cities_path
+      end
+                                 
   	else
   		render 'new'
   	end

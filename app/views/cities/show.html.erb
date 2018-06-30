@@ -1,4 +1,32 @@
-<p> <%= @weather['main']['temp'].round %> </p>
+<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+<script type="text/javascript">
+	ymaps.ready(init);
+
+	function init() {
+		var coord = document.getElementById('map')
+		var lon = Number(coord.dataset.lon)
+		var lat = Number(coord.dataset.lat)
+		
+		var myMap = new ymaps.Map("map", {
+			center: [lat, lon],
+			zoom: 5
+		});
+
+		var Placemark = new ymaps.Placemark([lat, lon]);
+
+		myMap.geoObjects.add(Placemark);
+	}
+</script>
+
+<h1><%= @weather['name'] %></h1>
+
+<p><%= @weather['main']['temp'].round %>°C</p>
+
+<p>Wind <%= @weather['wind']['speed'] %> m/s</p>
+
+<p>Pressure <%= @weather['main']['pressure'] %> hpa</p>
+
+<p>Humidity <%= @weather['main']['humidity'] %> %</p>
 
 <%= content_tag :div, id: 'map', data: 
 							{ lon: @weather['coord']['lon'], 
