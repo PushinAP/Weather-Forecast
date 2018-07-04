@@ -2,13 +2,17 @@
 	<div class="col-md-6 offset-md-3" id='login'>
 		<h1>Log In</h1>
 
+		<% flash.each do |message_type, message| %>
+      <div class="alert alert-<%= message_type %>"><%= message %></div>
+    <% end %>
+    
 		<%= form_with(scope: :session, url: login_path, local:true) do |f| %>
 
 			<%= f.label :name %>
 			<%= f.text_field :name %>
 
 			<%= f.label :password %>
-			<%= f.text_field :password %>
+			<%= f.text_field :password, type:"password" %>
 
 			<%= f.submit "Login" %>
 		<% end %>

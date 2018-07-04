@@ -27,6 +27,9 @@ class CitiesController < ApplicationController
 
     if @city.save
       redirect_to cities_path
+    else 
+      flash[:danger] = 'This city was add'
+      render 'new'
     end
   end
 
@@ -61,7 +64,7 @@ class CitiesController < ApplicationController
     def checking_current_user_admin
 
       if !current_user.admin?
-
+        flash[:danger] = "Get administrator rights"
         redirect_to cities_path
       end
     end

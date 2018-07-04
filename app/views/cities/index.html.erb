@@ -1,10 +1,16 @@
 <h1>List forecast weather in the city</h1>
 <div id="all-city">
+
+	<% flash.each do |message_type, message| %>
+     <div class="alert alert-<%= message_type %>"><%= message %></div>
+  <% end %>
+
 	<table>
 		<% @cities.each do |city|  %>
 			<tr>
 				<td>Weather in <%= city.city_name %></td>
-				<td><%= link_to 'Show', city_path(city), class:"btn", id:"show-btn"%></td>
+				<td><%= link_to 'Show', city_path(city), class:"btn", 
+																							id:"show-btn" %></td>
 
 				<% if current_user.admin? %>
 					<td><%= link_to 'Delete', city_path(city),
@@ -13,8 +19,9 @@
 				
 			</tr>
 		<% end %>
-	</table>
+	</table>	
 </div>
+
 <% if current_user.admin? %>
 	<div id='add-city'>
 		<%=  link_to 'Add city', new_city_path, class:"btn btn-outline-primary"%>

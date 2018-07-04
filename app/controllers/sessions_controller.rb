@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   def new
   	if logged_in? 
-  		
+  		redirect_to cities_path
   	end
   end
 
