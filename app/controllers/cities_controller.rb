@@ -11,7 +11,7 @@ class CitiesController < ApplicationController
   def show
 
   	city = City.find(params[:id])
-    @weather = get_weather_forecast(city.city_id)
+    @weather = caching_weather_forecast(city.city_id)
 
   end
 
@@ -25,14 +25,8 @@ class CitiesController < ApplicationController
 
   	@city = City.new(cities_params)
 
-  	if @city.save
-
-  	  redirect_to cities_path
-
-    else
-
-      render 'new'
-
+    if @city.save
+      redirect_to cities_path
     end
   end
 
@@ -42,7 +36,7 @@ class CitiesController < ApplicationController
 
     @city.destroy
  
-    redirect_to forestcast_weathers_path
+    redirect_to cities_path
 
   end
 
@@ -66,10 +60,9 @@ class CitiesController < ApplicationController
 
     def checking_current_user_admin
 
-      unless current_user.admin?
+      if !current_user.admin?
 
         redirect_to cities_path
       end
     end
-
 end

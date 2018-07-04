@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   def new
   	if logged_in? 
-  		redirect_to  cities_path
+  		
   	end
   end
 
@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
   		log_in(user)
 
       if current_user.admin?
-        redirect_to cities_new_path
+        redirect_to new_city_path
       else
         redirect_to cities_path
       end

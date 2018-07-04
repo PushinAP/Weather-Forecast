@@ -1,15 +1,18 @@
-<h1>Add citi</h1>
+<div class='row'>		
+	<div class='col-md-6 offset-md-3' id='add-city'>
+		<h1>Add city</h1>
+		<%= form_with scope: :city, url: cities_path, local: true do |f| %> 
 
-<%= form_with scope: :city, url: cities_path do |f| %> 
-	<p>
-		<%= f.label :city_name, 'Enter City Name' %>
-		<%= f.text_field :city_name %>
-	</p>
+			<%= f.label :city_name, 'Enter City Name' %>
+			<%= f.text_field :city_name %>
 
-	<p>
-		<%= f.label :city_id, 'Enter City ID' %>
-		<%= f.text_field :city_id %>
-	</p>
 
-	<%= f.submit 'Add City' %>
-<% end %>
+			<%= f.label :city_id, 'Enter City ID' %>
+			<%= f.text_field :city_id %>
+
+			<%= f.submit 'Add City', class:"btn btn-success"%>
+		<% end %>
+
+		<%=  link_to 'All cities', cities_path, class:"btn btn-outline-info" %>
+	</div>
+</div>

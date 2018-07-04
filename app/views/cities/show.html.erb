@@ -1,34 +1,59 @@
-<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
-<script type="text/javascript">
-	ymaps.ready(init);
+<% if @weather['cod'] == 200 %>
 
-	function init() {
-		var coord = document.getElementById('map')
-		var lon = Number(coord.dataset.lon)
-		var lat = Number(coord.dataset.lat)
-		
-		var myMap = new ymaps.Map("map", {
-			center: [lat, lon],
-			zoom: 5
-		});
+	<script src="https://api-maps.yandex.ru/2.1/?lang=en" type="text/javascript"></script>
+	<script type="text/javascript">
+		ymaps.ready(init);
 
-		var Placemark = new ymaps.Placemark([lat, lon]);
+		function init() {
+			var coord = document.getElementById('map')
+			var lon = Number(coord.dataset.lon)
+			var lat = Number(coord.dataset.lat)
+			
+			var myMap = new ymaps.Map("map", {
+				center: [lat, lon],
+				zoom: 5
+			});
 
-		myMap.geoObjects.add(Placemark);
-	}
-</script>
+			var Placemark = new ymaps.Placemark([lat, lon]);
 
-<h1><%= @weather['name'] %></h1>
+			myMap.geoObjects.add(Placemark);
+		}
+	</script>
 
-<p><%= @weather['main']['temp'].round %>°C</p>
+	<div class='row'>
+		<div class='col-md-6 offset-md-3'>
+			<h1><%= @weather['name'] %></h1>
+			<div id='weather'>	
+				<p>
+					Temperature: <%= @weather['main']['temp'].round %>°C
+				</p>
 
-<p>Wind <%= @weather['wind']['speed'] %> m/s</p>
+				<p>
+					Wind: <%= @weather['wind']['speed'] %> m/s
+				</p>
 
-<p>Pressure <%= @weather['main']['pressure'] %> hpa</p>
+				<p>
+					Pressure: <%= @weather['main']['pressure'] %> hpa
+				</p>
 
-<p>Humidity <%= @weather['main']['humidity'] %> %</p>
+				<p>
+					Humidity: <%= @weather['main']['humidity'] %> %
+				</p>
 
-<%= content_tag :div, id: 'map', data: 
-							{ lon: @weather['coord']['lon'], 
-										lat: @weather['coord']['lat'] } do %>
+				<%= link_to 'Back', cities_path %>
+			</div>
+			
+			<%= content_tag :div, id: 'map', data: 
+										{ lon: @weather['coord']['lon'], 
+													lat: @weather['coord']['lat'] } do %>
+			</div>
+		</div>
+	<% end %>
+
+<% else %>
+	<h1> <%= @weather['cod'] %> </h1>
+
+	<p><%= @weather['message'].upcase %></p>
+
+	<%= link_to 'Back', cities_path %>
 <% end %>
