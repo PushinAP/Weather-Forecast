@@ -29,7 +29,7 @@ class CitiesController < ApplicationController
       redirect_to cities_path
     else 
       flash[:danger] = 'This city was add'
-      render 'new'
+      redirect_to new_city_path
     end
   end
 

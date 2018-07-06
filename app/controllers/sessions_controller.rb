@@ -18,6 +18,7 @@ class SessionsController < ApplicationController
       end
                                  
   	else
+      flash[:danger] = 'Incorrect name or password'
   		render 'new'
   	end
 
